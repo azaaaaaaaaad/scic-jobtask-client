@@ -7,11 +7,12 @@ import { FaRegStar } from "react-icons/fa";
 const ProductCard = () => {
     const [products, setProducts] = useState([]);
     const [asc, setAsc] = useState(true)
+    const [search, setSearch] = useState('')
 
     useEffect(() => {
         const getData = async () => {
             try {
-                const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/products?sort=${asc ? 'asc' : 'dsc'}`);
+                const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/products?sort=${asc ? 'asc' : 'dsc'}&search=${search}`);
                 setProducts(data);
             } catch (err) {
                 console.error("Error fetching products:", err);
@@ -19,13 +20,24 @@ const ProductCard = () => {
             }
         };
         getData();
-    }, [asc]);
+    }, [asc, search]);
 
-    // console.log(products);
+    const handleSearch = e => {
+        e.preventDefault()
+        const searctText = e.target.search.value
+        console.log(searctText);
+        setSearch(searctText)
+
+    }
+
 
     return (
         <div>
-            <div className="text-center mt-6">
+            <div className="flex items-center justify-around text-center mt-6">
+                <form onSubmit={handleSearch}>
+                    <input className="border" type="text" name="search" />
+                    <input className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg text-white bg-gradient-to-r from-blue-600 to-violet-900 " type="submit" value="Search" />
+                </form>
                 <button
                     className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg text-white bg-gradient-to-r from-blue-600 to-violet-900 "
                     onClick={() => setAsc(!asc)}>
@@ -49,7 +61,7 @@ const ProductCard = () => {
                                 <p className="flex items-center gap-2">Ratings: {product?.Ratings}<FaRegStar /></p>
                                 <p>Price: ${product?.Price}</p>
                                 <div className="card-actions">
-                                    <button className="btn btn-primary">Buy Now</button>
+                                    <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg text-white bg-gradient-to-r from-blue-600 to-violet-900 ">Buy Now</button>
                                 </div>
                             </div>
                         </div>
