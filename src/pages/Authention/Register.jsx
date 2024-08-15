@@ -60,7 +60,7 @@ const Register = () => {
                     <div className='flex justify-center mx-auto'>
                         <img
                             className='w-auto h-7 sm:h-8'
-                            src={logo}
+                            // src={logo}
                             alt=''
                         />
                     </div>
@@ -196,7 +196,7 @@ const Register = () => {
                 <div
                     className='hidden bg-cover bg-center lg:block lg:w-1/2'
                     style={{
-                        backgroundImage: `url(${bgImg})`,
+                        backgroundImage: `url(${logo})`,
                     }}
                 ></div>
             </div>
