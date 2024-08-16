@@ -34,8 +34,9 @@ const ProductCard = () => {
     return (
         <div>
             <div className="flex items-center justify-around text-center mt-6">
-                <form onSubmit={handleSearch}>
-                    <input className="border" type="text" name="search" />
+                <form 
+                onSubmit={handleSearch}>
+                    <input className=" mr-2 border border-black rounded-xl lg:p-4" type="text" name="search" />
                     <input className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg text-white bg-gradient-to-r from-blue-600 to-violet-900 " type="submit" value="Search" />
                 </form>
                 <button
