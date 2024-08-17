@@ -24,25 +24,22 @@ const Login = () => {
 
   //email pass signin
   const handleSignIn = async e => {
-    e.preventDefault()
-    const form = e.target 
-    const email = form.email.value
-    const password = form.password.value
-    console.log({email, password});
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log({ email, password });
 
-    try{
-      const result = await signIn(email, pass)
-      console.log(result);
-      navigate('/')
-      toast.success('signin successful')
-    } catch (err){
-      console.log(err);
-      toast.error(err?.message)
-      
+    try {
+        const result = await signIn(email, password); // Fixed variable name
+        console.log(result);
+        navigate('/');
+        toast.success('Signin successful');
+    } catch (err) {
+        console.log(err);
+        toast.error(err?.message);
     }
-    
-    
-  }
+};
 
   return (
     <div className='flex justify-center items-center min-h-[calc(100vh-306px)] my-12'>
